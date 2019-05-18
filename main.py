@@ -1,6 +1,7 @@
 import unittest
 import tests.numtest
 import os
+import importlib
 
 # import [フォルダ名].[ファイル名]
 # [インスタンス変数] = [フォルダ名].[ファイル名].[クラス名]
@@ -27,13 +28,14 @@ def callTestsInTheTestsFolder():
                                         in os.listdir("./tests/") 
                                         if os.path.isfile(os.path.join("./tests/",fileName))]
 
-    
-    return fileNameListInTestsFolder_noext
+    for importFileName in fileNameListInTestsFolder_noext:
+        importlib.import_module("tests."+importFileName)
+    return set(fileNameListInTestsFolder_noext)
 
 
 
 
-
+# 
 
 # ほかのファイルからimportされたときにテストが実行されないようにする
 if __name__ == "__main__":
