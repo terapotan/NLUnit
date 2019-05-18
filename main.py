@@ -1,5 +1,6 @@
 import unittest
 import tests.numtest
+import os
 
 # import [フォルダ名].[ファイル名]
 # [インスタンス変数] = [フォルダ名].[ファイル名].[クラス名]
@@ -16,11 +17,18 @@ class mainTest(unittest.TestCase):
         # クラスの中に存在するメソッド1つ1つが1つのテストケースに相当する
         # テストケースは自動認識(実行するテストケースをユーザー側が指定する必要はない)されるようにする
         # ファイル名とクラス名は同じ名前にしなければならない。
-        self.assertEqual(TestsInTestsFolderCall(),['numtest','test1','test2'])
+
+        self.assertEqual(callTestsInTheTestsFolder(),set(['numtest','test1','test2']))
+
 # TODO:例外処理は後で実装
-# TODO:後で自動認識機能を実装
-def TestsInTestsFolderCall():
-    return ['numtest','test1','test2']
+def callTestsInTheTestsFolder():
+    fileNameListInTestsFolder_noext = [os.path.splitext(fileName)[0] 
+                                        for fileName
+                                        in os.listdir("./tests/") 
+                                        if os.path.isfile(os.path.join("./tests/",fileName))]
+
+    
+    return fileNameListInTestsFolder_noext
 
 
 
