@@ -40,9 +40,8 @@ def callTestsInTheTestsFolder():
 
         # 右辺一つ目のtestCaseClassNameはクラスが入っているファイルの名前である。
         classAbsolutePathName_nolastdot = 'tests.' + testCaseClassName + '.' + testCaseClassName
-        execTestCasesInTheClassFuncName = 'executeTestCasesInMyClass_' + testCaseClassName
 
-        eval(classAbsolutePathName_nolastdot + '.' + execTestCasesInTheClassFuncName)
+        eval(classAbsolutePathName_nolastdot + '.' + 'executeTestCasesInMyClass')
     return set(fileNameListInTestsFolder_noext)
 
 
