@@ -1,2 +1,3 @@
 class test2:
-    pass
+    def executeTestCasesInMyClass_test2(self):
+        pass

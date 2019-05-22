@@ -18,24 +18,36 @@ class mainTest(unittest.TestCase):
         # クラスの中に存在するメソッド1つ1つが1つのテストケースに相当する
         # テストケースは自動認識(実行するテストケースをユーザー側が指定する必要はない)されるようにする
         # ファイル名とクラス名は同じ名前にしなければならない。
+        # クラスにはexecuteTestCasesInMyClass_[クラス名]という名前の関数を必ず入れる
+        # その関数でクラス中に存在するテストケースを全て呼び出すようにする。
 
         self.assertEqual(callTestsInTheTestsFolder(),set(['numtest','test1','test2']))
 
+
 # TODO:例外処理は後で実装
+# FIXME:テストを実行するたびにファイルをimportしている。将来的にテストを複数回実行するとき修正が必要だろう。
 def callTestsInTheTestsFolder():
     fileNameListInTestsFolder_noext = [os.path.splitext(fileName)[0] 
                                         for fileName
                                         in os.listdir("./tests/") 
                                         if os.path.isfile(os.path.join("./tests/",fileName))]
 
+    # testsフォルダ内のファイルを全てimportする
     for importFileName in fileNameListInTestsFolder_noext:
         importlib.import_module("tests."+importFileName)
+
+    for testCaseClassName in fileNameListInTestsFolder_noext:
+
+        # 右辺一つ目のtestCaseClassNameはクラスが入っているファイルの名前である。
+        classAbsolutePathName_nolastdot = 'tests.' + testCaseClassName + '.' + testCaseClassName
+        execTestCasesInTheClassFuncName = 'executeTestCasesInMyClass_' + testCaseClassName
+
+        eval(classAbsolutePathName_nolastdot + '.' + execTestCasesInTheClassFuncName)
     return set(fileNameListInTestsFolder_noext)
 
 
 
 
-# 
 
 # ほかのファイルからimportされたときにテストが実行されないようにする
 if __name__ == "__main__":
