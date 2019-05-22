@@ -21,11 +21,11 @@ class mainTest(unittest.TestCase):
         # クラスにはexecuteTestCasesInMyClass_[クラス名]という名前の関数を必ず入れる
         # その関数でクラス中に存在するテストケースを全て呼び出すようにする。
 
+        # FIXME:testsに存在するファイル名を確かめるだけでは意図した通りテストされていない
         self.assertEqual(callTestsInTheTestsFolder(),set(['numtest','test1','test2']))
 
-
 # TODO:例外処理は後で実装
-# FIXME:テストを実行するたびにファイルをimportしている。将来的にテストを複数回実行するとき修正が必要だろう。
+# FIXME:テストを実行するたびにファイルをimportしている。これは明らかに無駄であるため将来的にテストを複数回実行するとき修正が必要だろう。
 def callTestsInTheTestsFolder():
     fileNameListInTestsFolder_noext = [os.path.splitext(fileName)[0] 
                                         for fileName
@@ -40,8 +40,9 @@ def callTestsInTheTestsFolder():
 
         # 右辺一つ目のtestCaseClassNameはクラスが入っているファイルの名前である。
         classAbsolutePathName_nolastdot = 'tests.' + testCaseClassName + '.' + testCaseClassName
+        testCaseClassInstance = eval(classAbsolutePathName_nolastdot+'()')
 
-        eval(classAbsolutePathName_nolastdot + '.' + 'executeTestCasesInMyClass')
+        testCaseClassInstance.executeTestCasesInMyClass()
     return set(fileNameListInTestsFolder_noext)
 
 
