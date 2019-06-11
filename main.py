@@ -6,6 +6,7 @@ import importlib
 # import [フォルダ名].[ファイル名]
 # [インスタンス変数] = [フォルダ名].[ファイル名].[クラス名]
 # クラス名を忘れがち。大抵ファイル名とクラス名は一緒にするので余計分かりにくい。
+# importのパスは最初に実行したファイル(今回の場合だとmain.py)起点で決まるらしい。
 # 結構悩んだ。pythonのimportってめんどくさい。
 
 class mainTest(unittest.TestCase):
@@ -37,9 +38,8 @@ def callTestsInTheTestsFolder():
 
         # 右辺一つ目のtestCaseClassNameはクラスが入っているファイルの名前である。
         classAbsolutePathName_nolastdot = 'tests.' + testCaseClassName + '.' + testCaseClassName
+        
         testCaseClassInstance = eval(classAbsolutePathName_nolastdot+'()')
-        
-        
         testCaseClassInstance.executeTestCasesInMyClass()
 
     return set(fileNameListInTestsFolder_noext)
