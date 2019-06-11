@@ -1,7 +1,7 @@
 import inspect
 class numtest:
     def retNum(self):
-        print("abc")
+        print("call numtest::retNum.")
         return 1
     def executeTestCasesInMyClass(self):
         for testCaseFunctionName in inspect.getmembers(self,inspect.ismethod):

@@ -9,9 +9,6 @@ import importlib
 # 結構悩んだ。pythonのimportってめんどくさい。
 
 class mainTest(unittest.TestCase):
-    def test_calltests(self):
-        inst = tests.numtest.numtest()
-        self.assertEqual(inst.retNum(),1)
     def test_canTestsInTestsFolderCall(self):
         # NLUnitで実行されるテストは全てtestsフォルダに入れられる
         # 1つのファイルにつき1つのテスト実行用クラスしか存在してはならない
@@ -42,8 +39,9 @@ def callTestsInTheTestsFolder():
         classAbsolutePathName_nolastdot = 'tests.' + testCaseClassName + '.' + testCaseClassName
         testCaseClassInstance = eval(classAbsolutePathName_nolastdot+'()')
         
-        testCaseClassInstance.executeTestCasesInMyClass()
         
+        testCaseClassInstance.executeTestCasesInMyClass()
+
     return set(fileNameListInTestsFolder_noext)
 
 
@@ -53,3 +51,4 @@ def callTestsInTheTestsFolder():
 # ほかのファイルからimportされたときにテストが実行されないようにする
 if __name__ == "__main__":
     unittest.main()
+

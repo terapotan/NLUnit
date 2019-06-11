@@ -12,7 +12,8 @@
             - ~~インスタンス変数を使った形で関数を呼び出すようにする~~
         - ~~クラス内に存在する関数を全てリストアップする~~
         - ~~クラス内に存在する関数をすべて実行する(numtestのみ)~~
-        
+        - クラス内に存在する関数をすべて実行する(testsフォルダに存在するすべてのクラス)
+        - ~~クラス内に存在する関数が呼び出されたときに、それぞれ自身の関数名を表示するようにする。~~
 
 # UML
 ```plantuml
@@ -26,6 +27,10 @@ class test1{
     + executeTestCasesInMyClass
 }
 class test2{
+    + executeTestCasesInMyClass
+}
+
+class testCase{
     + executeTestCasesInMyClass
 }
 
