@@ -1,8 +1,9 @@
 import inspect
 class numtest:
-    def retNum(self):
-        print("call numtest::retNum.")
-        return 1
+    def test1(self):
+        print("call numtest::test1.")
+    def test2(self):
+        print("call numtest::test2.")
     def executeTestCasesInMyClass(self):
         for testCaseFunctionName in inspect.getmembers(self,inspect.ismethod):
 
