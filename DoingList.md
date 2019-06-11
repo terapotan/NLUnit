@@ -14,6 +14,11 @@
         - ~~クラス内に存在する関数をすべて実行する(numtestのみ)~~
         - ~~クラス内に存在する関数をすべて実行する(testsフォルダに存在するすべてのクラス)~~
         - ~~クラス内に存在する関数が呼び出されたときに、それぞれ自身の関数名を表示するようにする。~~
+    - executeTestCasesInMyClassの重複を排除する
+        - nlunitClassクラスを作成する
+        - numtest,test1,test2はnlunitClassクラスを継承する。
+        - executeTestCasesInMyClass()の実装をnlunitClassクラスで追加。
+        - 重複を排除。
 
 # UML
 ```plantuml
@@ -34,6 +39,9 @@ class testCase{
     + executeTestCasesInMyClass
 }
 
+class nlunitClass{
+    + executeTestCaseInMyClass
+}
 numtest <-- mainTest
 test1 <-- mainTest
 test2 <-- mainTest
